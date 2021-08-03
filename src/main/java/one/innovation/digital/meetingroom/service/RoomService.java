@@ -27,16 +27,17 @@ public class RoomService {
         Room RoomToSave = roomMapper.toModel(roomDTO);
 
         Room savedRoom = roomRepository.save(RoomToSave);
-        return createMethodResponse(savedRoom, "Created Room '%s %s' with ID: %d");
+        return createMethodResponse(savedRoom, "Created Room '%s' on date %s and period %s-%s with ID: %d");
     }
 
     public MessageResponseDTO updateRoom(Long id, RoomDTO roomDTO) throws ResourceNotFoundException {
         verifyIfExists(id);
 
         Room RoomToUpdate = roomMapper.toModel(roomDTO);
+        RoomToUpdate.setId(id);
 
         Room savedRoom = roomRepository.save(RoomToUpdate);
-        return createMethodResponse(savedRoom, "Updated Room '%s %s' with ID: %d");
+        return createMethodResponse(savedRoom, "Updated Room '%s' on date %s and period %s-%s with ID: %d");
     }
 
     public List<RoomDTO> listAll(){
@@ -59,7 +60,7 @@ public class RoomService {
 
         Map<String, Boolean> response = new HashMap<>();
 
-        response.put("deleted", Boolean.TRUE);
+        response.put("deleted room with id: "+id, Boolean.TRUE);
         return response;
     }
 

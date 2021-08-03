@@ -11,7 +11,7 @@ public interface RoomMapper {
 
     RoomMapper INSTANCE = Mappers.getMapper(RoomMapper.class);
 
-    @Mapping(target = "date", source = "date", dateFormat = "dd-MM-yyyy")
+    @Mapping(target = "date", source = "date", dateFormat = "yyyy-MM-dd")
     Room toModel(RoomDTO roomDTO);
 
     RoomDTO toDTO(Room room);
